@@ -1,8 +1,7 @@
-#include <iostream>
 #include "cekla.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    writeln("Hello, World!");
     return 0;
 }
 
