@@ -37,6 +37,17 @@ list filterEven(list L) {
     return filterEven(L, 0, nil);
 }
 
+// revapp(L, L0) = az L lista megfordítása L0 elé fűzve
+list revapp(const list L, const list L0) {
+    if (L == nil) return L0;
+    return revapp(tl(L), cons(hd(L), L0));
+}
+
+// reverse(L) = az L lista megfordítva
+list reverse(const list L) {
+    return revapp(L, nil);
+}
+
 /* osszekevert(S, A) == SK, ha SK az S szám A alapú összekevert változata
    (S>0, A>1 egész számok).
    Egy S szám A alapú összekevertjét úgy kapjuk meg, hogy az S számot
