@@ -1,0 +1,20 @@
+1. S szam felirasa A alapu szamrendszerben 
+2. sorozat atrendezese
+   - paratlan index helyen marad
+   - paros index sorrendje fordul           
+            
+3. atalakitott szamsor legyen egy A alapu szam
+
+int osszekevert(const int S, const int A){...}
+
+puska ceklahoz:
+ list - lista tarolasa
+ nil - ures lista
+ int hd(list l) - lista 'feje'
+ list tl(list l) - lista 'farka'
+ list cons(int Head, list Tail) - lista epitese
+ writeln() - kiiras, csak nyomkovetesre
+
+ 
+ 
+ 

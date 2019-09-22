@@ -13,7 +13,8 @@ list convertBase(const int number, const int base, list Acc) {
         return convertBase(number / base, base, cons(number % base, Acc));
 }
 
-// seged fuggveny, kivalogatja az L listabol a paros indexueket, i jeloli azt hogy paros (1) vagy paratlan (0)
+// seged fuggveny, kivalogatja az L listabol a paros indexueket,
+// i jeloli azt hogy paros (1) vagy paratlan (0)
 list filterEven(list L, int i, list Acc) {
     if (tl(L) == nil) {
         if (i == 1)
@@ -35,7 +36,8 @@ list revapp(const list L, const list L0) {
     return revapp(tl(L), cons(hd(L), L0));
 }
 
-// seged fuggveny, az eredeti es egz szurt listabol osszeallit egz kevert listat, i jeloli azt hogy paros (1) vagy paratlan (0)
+// seged fuggveny, az eredeti es egz szurt listabol osszeallit egz kevert listat,
+// i jeloli azt hogy paros (1) vagy paratlan (0)
 list kevertList(list original, list even, int i, list Acc) {
     if (original == nil)
         return Acc;
@@ -46,7 +48,7 @@ list kevertList(list original, list even, int i, list Acc) {
     }
 }
 
-// seged fuggveny, base alapu szam L listaban tarolt 10-es szamrendszerbeli alakjat adja vissza
+// seged fuggveny, L listaban tarolt base alapu szam 10-es szamrendszerbeli alakjat adja vissza
 int convertListToNum(list L, int base, int Acc) {
     if (L == nil) {
         return Acc;
