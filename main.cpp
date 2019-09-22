@@ -7,20 +7,22 @@ int main() {
 
 // seged fuggveny, number szamot base lapura valtja
 list convertBase(const int number, const int base, list Acc) {
-    if ((number / base) == 0)
+    if ((number / base) == 0) {
         return cons(number % base, Acc);
-    else
+    } else {
         return convertBase(number / base, base, cons(number % base, Acc));
+    }
 }
 
 // seged fuggveny, kivalogatja az L listabol a paros indexueket,
 // i jeloli azt hogy paros (1) vagy paratlan (0)
 list filterEven(list L, int i, list Acc) {
     if (tl(L) == nil) {
-        if (i == 1)
+        if (i == 1) {
             return cons(hd(L), Acc);
-        else
+        } else {
             return Acc;
+        }
     }
 
     if (i == 0) {
@@ -32,15 +34,18 @@ list filterEven(list L, int i, list Acc) {
 
 // revapp(L, L0) = az L lista megfordítása L0 elé fűzve
 list revapp(const list L, const list L0) {
-    if (L == nil) return L0;
+    if (L == nil) {
+        return L0;
+    }
     return revapp(tl(L), cons(hd(L), L0));
 }
 
 // seged fuggveny, az eredeti es egz szurt listabol osszeallit egz kevert listat,
 // i jeloli azt hogy paros (1) vagy paratlan (0)
 list kevertList(list original, list even, int i, list Acc) {
-    if (original == nil)
+    if (original == nil) {
         return Acc;
+    }
     if (i == 0) {
         return kevertList(tl(original), even, 1, cons(hd(original), Acc));
     } else {
@@ -65,10 +70,12 @@ list convertBase(const int number, const int base) {
 list filterEven(list L) {
     return filterEven(L, 0, nil);
 }
+
 // reverse(L) = az L lista megfordítva
 list reverse(const list L) {
     return revapp(L, nil);
 }
+
 // az eredeti listaba beleilleszti az even lista elemeit, minden masodik helyre
 list kevertList(list original) {
     return reverse(kevertList(original, filterEven(original), 0, nil));
