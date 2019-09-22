@@ -5,6 +5,7 @@ int main() {
     return 0;
 }
 
+// seged fuggveny, number szamot base lapura valtja
 list convertBase(const int number, const int base, list Acc) {
     if ((number / base) == 0)
         return cons(number % base, Acc);
@@ -12,11 +13,7 @@ list convertBase(const int number, const int base, list Acc) {
         return convertBase(number / base, base, cons(number % base, Acc));
 }
 
-// number base alapu szamrendszerben
-list convertBase(const int number, const int base) {
-    return convertBase(number, base, nil);
-}
-
+// seged fuggveny, kivalogatja az L listabol a paros indexueket, i jeloli azt hogy paros (1) vagy paratlan (0)
 list filterEven(list L, int i, list Acc) {
     if (tl(L) == nil) {
         if (i == 1)
@@ -32,20 +29,52 @@ list filterEven(list L, int i, list Acc) {
     }
 }
 
-// filter every second number from list
-list filterEven(list L) {
-    return filterEven(L, 0, nil);
-}
-
 // revapp(L, L0) = az L lista megfordítása L0 elé fűzve
 list revapp(const list L, const list L0) {
     if (L == nil) return L0;
     return revapp(tl(L), cons(hd(L), L0));
 }
 
+// seged fuggveny, az eredeti es egz szurt listabol osszeallit egz kevert listat, i jeloli azt hogy paros (1) vagy paratlan (0)
+list kevertList(list original, list even, int i, list Acc) {
+    if (original == nil)
+        return Acc;
+    if (i == 0) {
+        return kevertList(tl(original), even, 1, cons(hd(original), Acc));
+    } else {
+        return kevertList(tl(original), tl(even), 0, cons(hd(even), Acc));
+    }
+}
+
+// seged fuggveny, base alapu szam L listaban tarolt 10-es szamrendszerbeli alakjat adja vissza
+int convertListToNum(list L, int base, int Acc) {
+    if (L == nil) {
+        return Acc;
+    }
+    return convertListToNum(tl(L), base, base * Acc + hd(L));
+}
+
+// number base alapu szamrendszerben
+list convertBase(const int number, const int base) {
+    return convertBase(number, base, nil);
+}
+
+// minden masodik elem kiszurese
+list filterEven(list L) {
+    return filterEven(L, 0, nil);
+}
 // reverse(L) = az L lista megfordítva
 list reverse(const list L) {
     return revapp(L, nil);
+}
+// az eredeti listaba beleilleszti az even lista elemeit, minden masodik helyre
+list kevertList(list original) {
+    return reverse(kevertList(original, filterEven(original), 0, nil));
+}
+
+// L listat kiolvassa 10-es szamrendszerben
+int convertListToNum(list L, int base) {
+    return convertListToNum(L, base, 0);
 }
 
 /* osszekevert(S, A) == SK, ha SK az S szám A alapú összekevert változata
@@ -57,5 +86,5 @@ list reverse(const list L) {
    keresett értéket.
 */
 int osszekevert(const int S, const int A) {
-    writeln(convertBase(13, 2));
+    return convertListToNum(kevertList(convertBase(S, A)), A);
 }
